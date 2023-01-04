@@ -218,6 +218,10 @@ github.com/lucor/goinfo v0.0.0-20210802170112-c078a2b0f08b/go.mod h1:PRq09yoB+Q2
 github.com/magiconair/properties v1.8.5/go.mod h1:y3VJvCyxH9uVvJTWEGAELF3aiYNyPKd5NZ3oSwXrF60=
 github.com/mattn/go-colorable v0.0.9/go.mod h1:9vuHe8Xs5qXnSaW/c/ABM9alt+Vo+STaOChaDxuIBZU=
 github.com/mattn/go-isatty v0.0.3/go.mod h1:M+lRXTBqGeGNdLjl/ufCoiOlB5xdOkqRJdNxMWT7Zi4=
+github.com/maxsupermanhd/go-lifting v0.0.0-20221122021747-5f88d442816e h1:BoSUCH84H3UkJvkl1BP2b+YgkB7PSwcfQE8IIN00+UI=
+github.com/maxsupermanhd/go-lifting v0.0.0-20221122021747-5f88d442816e/go.mod h1:Z4MQnG6UjUuPAquAlGkHC/U7Fn78QBPvpJSIHJycwuo=
+github.com/maxsupermanhd/go-lifting v0.0.0-20230103223130-2da9a690e143 h1:+2kou4A/7ZJZ/hQTNfFA8ezUN/VUuklw5/KCHLrHyJw=
+github.com/maxsupermanhd/go-lifting v0.0.0-20230103223130-2da9a690e143/go.mod h1:Z4MQnG6UjUuPAquAlGkHC/U7Fn78QBPvpJSIHJycwuo=
 github.com/mcuadros/go-version v0.0.0-20190830083331-035f6764e8d2/go.mod h1:76rfSfYPWj01Z85hUf/ituArm797mNKcvINh1OlsZKo=
 github.com/miekg/dns v1.0.14/go.mod h1:W1PPwlIAgtquWBMBEV9nkV9Cazfe8ScdGz/Lj7v3Nrg=
 github.com/mitchellh/cli v1.0.0/go.mod h1:hNIlj7HEI86fIcpObd7a0FcrxTWetlwJDGcceTlRvqc=
