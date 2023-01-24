@@ -72,6 +72,8 @@ func main() {
 	// }
 	// fmt.Printf("Got %d world seeds: %v\n", len(worldSeeds), worldSeeds)
 
+	// lifting.ExampleLiftStructures()
+
 	versionList := []string{}
 	for _, v := range lifting.Versions {
 		versionList = append(versionList, v.String())
@@ -117,6 +119,12 @@ func main() {
 				wb.SetText("Delete")
 				wb.OnTapped = func() {
 					tolift = append(tolift[:dataIndex], tolift[dataIndex+1:]...)
+				}
+				for i := range tolift {
+					tolift[i].StructureInitialized = false
+					tolift[i].VersionInitialized = false
+					tolift[i].XInitialized = false
+					tolift[i].ZInitialized = false
 				}
 				wb.Show()
 			}
@@ -220,7 +228,7 @@ func main() {
 		t.Refresh()
 	})
 	saveInputsBtn := widget.NewButton("Save structures", func() {
-		dialog.NewFileSave(func(uc fyne.URIWriteCloser, err error) {
+		fsd := dialog.NewFileSave(func(uc fyne.URIWriteCloser, err error) {
 			if uc != nil {
 				b, err := json.MarshalIndent(tolift, "", "\t")
 				if err != nil {
@@ -229,10 +237,12 @@ func main() {
 				uc.Write(b)
 				uc.Close()
 			}
-		}, w).Show()
+		}, w)
+		fsd.Resize(w.Canvas().Size())
+		fsd.Show()
 	})
 	loadInputsBtn := widget.NewButton("Load structures", func() {
-		dialog.NewFileOpen(func(uc fyne.URIReadCloser, err error) {
+		fod := dialog.NewFileOpen(func(uc fyne.URIReadCloser, err error) {
 			if uc != nil {
 				b, err := io.ReadAll(uc)
 				if err != nil {
@@ -242,8 +252,16 @@ func main() {
 				if err != nil {
 					log.Println(err)
 				}
+				for i := range tolift {
+					tolift[i].StructureInitialized = false
+					tolift[i].VersionInitialized = false
+					tolift[i].XInitialized = false
+					tolift[i].ZInitialized = false
+				}
 			}
-		}, w).Show()
+		}, w)
+		fod.Resize(w.Canvas().Size())
+		fod.Show()
 	})
 	btnbox := container.NewMax(container.NewHBox(startLiftingBtn, stopLiftingBtn, addInputBtn, saveInputsBtn, loadInputsBtn))
 
@@ -251,7 +269,7 @@ func main() {
 	progressHigher := widget.NewProgressBar()
 	progressStructureSeedsCount := widget.NewLabel("Found structure seeds: 0")
 	saveStructureSeedsBtn := widget.NewButton("Save structure seeds", func() {
-		dialog.NewFileSave(func(uc fyne.URIWriteCloser, err error) {
+		fsd := dialog.NewFileSave(func(uc fyne.URIWriteCloser, err error) {
 			if uc != nil {
 				fmt.Fprint(uc, "Structure seeds from go-lifting-gui\n\n")
 				b, err := json.Marshal(tolift)
@@ -264,12 +282,14 @@ func main() {
 				}
 				uc.Close()
 			}
-		}, w).Show()
+		}, w)
+		fsd.Resize(w.Canvas().Size())
+		fsd.Show()
 	})
 	css := container.NewHBox(progressStructureSeedsCount, saveStructureSeedsBtn)
 	progressWorldSeedsCount := widget.NewLabel("Found world seeds: 0")
 	saveWorldSeedsBtn := widget.NewButton("Save world seeds", func() {
-		dialog.NewFileSave(func(uc fyne.URIWriteCloser, err error) {
+		fsd := dialog.NewFileSave(func(uc fyne.URIWriteCloser, err error) {
 			if uc != nil {
 				fmt.Fprint(uc, "World seeds from go-lifting-gui\n\n")
 				b, err := json.Marshal(tolift)
@@ -282,7 +302,9 @@ func main() {
 				}
 				uc.Close()
 			}
-		}, w).Show()
+		}, w)
+		fsd.Resize(w.Canvas().Size())
+		fsd.Show()
 	})
 	cws := container.NewHBox(progressWorldSeedsCount, saveWorldSeedsBtn)
 
